@@ -3,12 +3,10 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "type": "module",
     "scripts": {
-        "build:dev": "npm-run-all --parallel build:client build:server",
+        "dev": "nodemon -r dotenv/config --exec babel-node ./server/index.js",
         "build:client": "cross-env NODE_ENV=developement webpack --config webpack.dev.config.js --mode=development --watch",
-        "build:server": "cross-env NODE_ENV=developement webpack --config webpack.server.config.js --mode=development --watch",
-        "dev": "nodemon ./server/index.js --experimental-modules"
+        "build:server": "cross-env NODE_ENV=developement webpack --config webpack.server.config.js --mode=development --watch"        
     },
     "keywords": [],
     "author": "",

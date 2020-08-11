@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 
-import routes from '../src/routes';
+import routes from '../src/routes.js';
 
 import App from '../src/App';
 
