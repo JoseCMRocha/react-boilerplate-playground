@@ -31,13 +31,17 @@ const Main = () => (
     </Switch>
 );
 
-const Home = () => (
-    <div className='home'>
-        <h1>Welcome to my portfolio website</h1>
-        <p> Feel free to browse around and learn more about me.</p>
-    </div>
-);
-
-
+const Home = () => {
+    const activateLasers = () =>  {
+        alert("Here");
+    }
+    return(
+        <div className='home'>
+            <h1>Wfelcome to my portfolio website</h1>
+            <p> Feel free to browse around and learn more about me.</p>
+            <button onClick={activateLasers}> Activate Lasers </button>
+        </div>
+    );
+}
 
 export default hot(App);

@@ -6,8 +6,18 @@ module.exports = merge(commonConfig, {
 
     devtool: 'inline-source-map',
 
+    // devServer: {
+    //     hot:true
+    // },
+
     entry: {
-        client: './src/index.js'
+        vendor: ["react"], // Third party libraries
+        client: ['react-hot-loader/patch', './src/index.js']
     },
 
+    resolve: {
+        alias: {
+            'react-dom': '@hot-loader/react-dom',
+        },
+    }
 });

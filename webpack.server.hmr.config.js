@@ -1,4 +1,4 @@
-const path = require('path');
+
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common.config');
@@ -6,6 +6,10 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = merge(commonConfig, {
     mode: "development",
+
+    // node: {
+    //     fs: "empty"
+    //  },
 
     target: "node",
 
@@ -17,11 +21,17 @@ module.exports = merge(commonConfig, {
     //     hot: true
     // },
 
+    output: {
+        filename: '[name].[hash].js',
+        // hotUpdateChunkFilename: '.hot/hot-update.js',
+        // hotUpdateMainFilename: '.hot/hot-update.json',
+    },
+
     entry: [
         // activate HMR for React
         'react-hot-loader/patch',
         // bundle the client for hot reloading
-        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         './server/index.js'
     ],
 
