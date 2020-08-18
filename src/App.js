@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import { hot } from 'react-hot-loader/root';
+import React, { Component } from "react";
 import { Route, Switch, NavLink } from 'react-router-dom';
 
 import SignIn from "./signin/SignIn"
@@ -37,7 +37,7 @@ const Home = () => {
     }
     return(
         <div className='home'>
-            <h1>Wfelcome to my portfolio website</h1>
+            <h1>Welcome to my portfolio website</h1>
             <p> Feel free to browse around and learn more about me.</p>
             <button onClick={activateLasers}> Activate Lasers </button>
         </div>

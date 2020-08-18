@@ -16,9 +16,7 @@ const router = express.Router();
 // router2.get('*', loader);
 router.get('*', async (req, res) => {
 
-    //const stats = res.locals.webpackStats.toJson()
-
-    // console.log(stats);
+console.log(res.stats);
 
     const match = routes.reduce((acc, route) => matchPath(req.url, { path: route.path, exact: route.exact }) || acc, null);
 
@@ -32,6 +30,7 @@ router.get('*', async (req, res) => {
             <App />
         </StaticRouter>
     );
+    console.log("------ Replacing html -----");
 
     const indexFile = path.resolve('./public/index.html');
     fs.readFile(indexFile, 'utf8', (err, data) => {
@@ -59,11 +58,26 @@ router.get('*', async (req, res) => {
 
         // const scripts = getScripts(assets);
 
-        return res.send(
-            data.replace(
+        const rewriteHTML = (data, { title, body }) => {
+            data = data.replace(
+                /<title>.*?<\/title>/g,
+                `<title>${title}</title>`
+            );
+            data = data.replace(
                 '<div id="root"></div>',
-                `<div id="root">${app}</div>`)
-        );
+                `<div id="root">${body}</div>`
+            );
+            
+            data = 
+            data.replace("</body>", "<script type='text/javascript' src='/main.js'></script> </body>");
+            
+            return data;
+
+        };
+
+        console.log("------ Replacing html -----");
+        console.log(data);
+        return res.send(rewriteHTML(data, {title: 'SSR React Starter', body: app}));
     });
 
 });
